@@ -22,9 +22,9 @@ function App() {
     setCurrent(0);
   }
 
-  useEffect((fetchQuestions = fetchQuestions) => {
-    fetchQuestions();
-  }, []);
+  // useEffect(() => {
+  fetchQuestions();
+  // }, []);
 
   function shuffle(array) {
     return array.sort(function () {
