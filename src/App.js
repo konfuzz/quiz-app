@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
@@ -22,9 +22,10 @@ function App() {
     setCurrent(0);
   }
 
-  // useEffect(() => {
-  fetchQuestions();
-  // }, []);
+  useEffect(() => {
+    fetchQuestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function shuffle(array) {
     return array.sort(function () {
