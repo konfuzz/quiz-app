@@ -22,7 +22,7 @@ function App() {
     setCurrent(0);
   }
 
-  useEffect(() => {
+  useEffect((fetchBusinesses = fetchBusinesses) => {
     fetchQuestions();
   }, []);
 
