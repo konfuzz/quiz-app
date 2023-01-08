@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-function Quizform({ questions, current, setCurrent, score, setScore }) {
+function Quizform({
+  questions,
+  current,
+  setCurrent,
+  score,
+  setScore,
+  resetTimer,
+}) {
   const [radioValue, setRadioValue] = useState(null);
   const [clicked, setClicked] = useState(false);
 
@@ -52,6 +59,7 @@ function Quizform({ questions, current, setCurrent, score, setScore }) {
           setTimeout(() => {
             setClicked(false);
             setCurrent(current + 1);
+            resetTimer();
           }, 1500);
         }}
       >

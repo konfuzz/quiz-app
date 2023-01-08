@@ -3,11 +3,14 @@ import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 import Quizform from "./Components/quizform";
+import Timer from "./Components/timer";
 
 function App() {
   const [questions, setQuestions] = useState(null);
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
+  const [ready, setReady] = useState(false);
+  const [reset, setReset] = useState(false);
 
   async function fetchQuestions() {
     const questions = await axios.get(
@@ -20,12 +23,19 @@ function App() {
     setQuestions(questions);
     setScore(0);
     setCurrent(0);
+    setReady(true);
   }
 
   useEffect(() => {
     fetchQuestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log(current);
+    if (current >= questions.data.length) {
+      setReady(false);
+    }
+  }, [current])
 
   function shuffle(array) {
     return array.sort(function () {
@@ -33,10 +43,15 @@ function App() {
     });
   }
 
+  const resetTimer = () => {
+    setReset(reset => !reset);
+  }
+
   return (
     <div className="container">
       <h1>Quiz</h1>
       <div className="quiz">
+        {ready && <Timer ready={ready} reset={reset} current={current} setCurrent={setCurrent}></Timer>}
         {questions ? (
           current <= questions.data.length - 1 ? (
             <Quizform
@@ -45,6 +60,7 @@ function App() {
               setCurrent={setCurrent}
               score={score}
               setScore={setScore}
+              resetTimer={resetTimer}
             />
           ) : (
             <div className="final-screen">
