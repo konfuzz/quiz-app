@@ -28,6 +28,7 @@ function App() {
 
   useEffect(() => {
     fetchQuestions();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
     if (current >= questions.data.length) {
       setReady(false);
     }
-  }, [current])
+  }, [current, questions.data.length])
 
   function shuffle(array) {
     return array.sort(function () {

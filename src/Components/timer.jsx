@@ -22,7 +22,7 @@ const Timer = ({ ready, reset, current, setCurrent, }) => {
       setCurrent(current + 1);
       setSeconds(0);
     }
-  }, [seconds]);
+  }, [seconds, current, setCurrent]);
 
   return (
     <div className="timer" style={{ position: "absolute", right: "25px", top: "25px" }}>
