@@ -16,7 +16,6 @@ function App() {
     const questions = await axios.get(
       "https://the-trivia-api.com/api/questions?limit=10"
     );
-
     questions.answers = questions.data.map((question) =>
       shuffle([...question.incorrectAnswers, question.correctAnswer])
     );
@@ -32,11 +31,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(current);
-    if (current >= questions.data.length) {
+    if (questions && current >= questions.data.length) {
       setReady(false);
     }
-  }, [current, questions.data.length])
+  }, [current, questions])
 
   function shuffle(array) {
     return array.sort(function () {
