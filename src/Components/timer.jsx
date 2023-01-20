@@ -19,7 +19,7 @@ const Timer = ({ ready, reset, current, setCurrent, }) => {
 
   useEffect(() => {
     if (seconds === 0) {
-      setCurrent(current - 1);
+      setCurrent(current + 1);
       setSeconds(20);
     }
   }, [seconds, current, setCurrent]);
