@@ -56,6 +56,7 @@ function Quizform({
             ? setScore(score + 1)
             : setScore(score);
           setRadioValue(null);
+          resetTimer();
           setTimeout(() => {
             setClicked(false);
             setCurrent(current + 1);
